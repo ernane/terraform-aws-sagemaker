@@ -67,7 +67,7 @@ variable "endpoint" {
         accelerator_type                                  = optional(string)
         container_startup_health_check_timeout_in_seconds = optional(number)
         initial_instance_count                            = optional(number, 1)
-        instance_type                                     = optional(string, "ml.m5.large")
+        instance_type                                     = optional(string, "ml.t2.medium")
         model_name                                        = string
         variant_name                                      = optional(string, "AllTraffic")
       })
