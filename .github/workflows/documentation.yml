@@ -10,7 +10,7 @@ jobs:
       with:
         ref: ${{ github.event.pull_request.head.ref }}
 
-    - name: Render terraform docs and push changes back to PR
+    - name: Render terraform docs and push changes back to PR modules
       uses: terraform-docs/gh-actions@main
       with:
         working-dir: .
@@ -20,7 +20,7 @@ jobs:
         output-method: inject
         git-push: "true"
     
-    - name: Render terraform docs and push changes back to PR Examples
+    - name: Render terraform docs and push changes back to PR examples
       uses: terraform-docs/gh-actions@main
       with:
         working-dir: .
