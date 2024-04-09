@@ -1,10 +1,13 @@
 # .terraform-docs.yml
 content: |-
   {{ .Header }}
-  {{ .Footer }}
+
+  ### Model Package with Single Model 
+
+  ```hcl
+  {{ include "examples/model-package-with-single-model/main.tf" }}
+  ```
+
   {{ .Inputs }}
-  {{ .Modules }}
+
   {{ .Outputs }}
-  {{ .Providers }}
-  {{ .Requirements }}
-  {{ .Resources }}
