@@ -5,7 +5,7 @@ content: |-
   ### Model Package with Single Model 
 
   ```hcl
-  {{ include "examples/model-package-with-single-model/main.tf" }}
+  {{ include "model-package-with-single-model/main.tf" }}
   ```
 
   {{ .Inputs }}
