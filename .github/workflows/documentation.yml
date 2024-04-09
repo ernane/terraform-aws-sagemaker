@@ -13,4 +13,5 @@ jobs:
     - name: Render terraform docs and push changes back to PR
       uses: terraform-docs/gh-actions@main
       with:
-        find-dir: examples/
+        working-dir: examples/
+        recursive: true
