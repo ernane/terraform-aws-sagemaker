@@ -1,0 +1,13 @@
+# .terraform-docs.yml
+content: |-
+  {{ .Header }}
+
+  ### Model Package with Single Model 
+
+  {{ .Footer }}
+  {{ .Inputs }}
+  {{ .Modules }}
+  {{ .Outputs }}
+  {{ .Providers }}
+  {{ .Requirements }}
+  {{ .Resources }}
