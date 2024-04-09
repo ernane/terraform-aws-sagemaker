@@ -13,7 +13,12 @@ variable "model" {
     primary_container = optional(object({
       image              = optional(string)
       mode               = optional(string, "SingleModel")
+      model_data_url     = optional(string)
       model_package_name = optional(string)
+      model_data_source  = optional(string)
+      container_hostname = optional(string)
+      environment        = optional(map(string))
+      image_config       = optional(string)
     }))
 
     inference_execution_config = optional(object({
@@ -23,7 +28,12 @@ variable "model" {
     container = optional(object({
       image              = optional(string)
       mode               = optional(string, "SingleModel")
+      model_data_url     = optional(string)
       model_package_name = optional(string)
+      model_data_source  = optional(string)
+      container_hostname = optional(string)
+      environment        = optional(map(string))
+      image_config       = optional(string)
     }))
 
     enable_network_isolation = optional(bool)
@@ -63,6 +73,8 @@ variable "endpoint" {
 
   type = object({
     endpoint_configuration = object({
+      name = optional(string)
+
       production_variants = object({
         accelerator_type                                  = optional(string)
         container_startup_health_check_timeout_in_seconds = optional(number)
@@ -70,6 +82,7 @@ variable "endpoint" {
         instance_type                                     = optional(string, "ml.t2.medium")
         model_name                                        = string
         variant_name                                      = optional(string, "AllTraffic")
+        volume_size_in_gb                                 = optional(number)
       })
     })
   })

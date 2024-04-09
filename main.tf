@@ -13,7 +13,10 @@ resource "aws_sagemaker_model" "this" {
     content {
       image              = primary_container.value.image
       mode               = primary_container.value.mode
+      model_data_url     = primary_container.value.model_data_url
       model_package_name = primary_container.value.model_package_name
+      container_hostname = primary_container.value.container_hostname
+      environment        = primary_container.value.environment
     }
   }
 
@@ -31,7 +34,10 @@ resource "aws_sagemaker_model" "this" {
     content {
       image              = container.value.image
       mode               = container.value.mode
+      model_data_url     = container.value.model_data_url
       model_package_name = container.value.model_package_name
+      container_hostname = container.value.container_hostname
+      environment        = container.value.environment
     }
   }
 
@@ -55,6 +61,8 @@ resource "aws_sagemaker_model" "this" {
 resource "aws_sagemaker_endpoint_configuration" "this" {
   count = var.enable_endpoint_configuration ? 1 : 0
 
+  name = var.endpoint.endpoint_configuration.name
+
   dynamic "production_variants" {
     for_each = var.endpoint.endpoint_configuration.production_variants != null ? [var.endpoint.endpoint_configuration.production_variants] : []
 
@@ -65,6 +73,7 @@ resource "aws_sagemaker_endpoint_configuration" "this" {
       instance_type                                     = production_variants.value.instance_type
       model_name                                        = production_variants.value.model_name
       variant_name                                      = production_variants.value.variant_name
+      volume_size_in_gb                                 = production_variants.value.volume_size_in_gb
     }
   }
 }
