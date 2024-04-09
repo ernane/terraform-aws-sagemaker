@@ -1,34 +1,37 @@
+# AWS Sagemaker Terraform module
+
+Terraform module which creates Sagemaker resources on AWS.
+
+## Usage
+
 <!-- BEGIN_TF_DOCS -->
 
 
-## Example
+### Model Package with Single Model 
 
 ```hcl
-module "sagemaker" {
-  source = "../"
+data "aws_caller_identity" "current" {}
+data "aws_region" "current" {}
 
-  enable_model = false
-  model = {
-    name               = local.model_name
-    execution_role_arn = local.role_arn
+locals {
+  account_id = data.aws_caller_identity.current.account_id
+  region     = data.aws_region.current.name
+  model_name = "california-housing"
+}
 
-    container = {
-      mode               = "SingleModel"
-      model_package_name = local.model_package_name
-    }
-  }
+module "model" {
+  source = "../../modules/model"
 
-  enable_endpoint_configuration = false
-  endpoint = {
-    endpoint_configuration = {
-      production_variants = {
-        model_name = local.model_name
-      }
-    }
+  create             = true
+  name               = local.model_name
+  execution_role_arn = "arn:aws:iam::${local.account_id}:role/service-role/sagemaker-execution"
+
+  primary_container = {
+    model_package_name = "arn:aws:sagemaker:${local.region}:${local.account_id}:model-package/${local.model_name}/1"
   }
 
   tags = {
-    Environment = "dev"
+    Model = local.model_name
   }
 }
 ```

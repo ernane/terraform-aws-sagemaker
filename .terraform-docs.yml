@@ -2,10 +2,10 @@
 content: |-
   {{ .Header }}
 
-  ## Example
+  ### Model Package with Single Model 
 
   ```hcl
-  {{ include "examples/main.tf" }}
+  {{ include "examples/model-package-with-single-model/main.tf" }}
   ```
 
   {{ .Inputs }}
