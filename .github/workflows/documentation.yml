@@ -13,7 +13,7 @@ jobs:
     - name: Render terraform docs and push changes back to PR
       uses: terraform-docs/gh-actions@main
       with:
-        working-dir: .
+        working-dir: modules
         recursive: true
         recursive-path: modules/
         output-file: README.md
@@ -23,7 +23,7 @@ jobs:
     - name: Render terraform docs and push changes back to PR Examples
       uses: terraform-docs/gh-actions@main
       with:
-        working-dir: .
+        working-dir: examples
         recursive: true
         recursive-path: examples/
         output-file: README.md
