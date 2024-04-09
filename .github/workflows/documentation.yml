@@ -21,7 +21,7 @@ jobs:
     - name: Render terraform docs and push changes back to PR Examples
       uses: terraform-docs/gh-actions@main
       with:
-        working-dir: examples
+        working-dir: examples/model-package-with-single-model
         output-file: README.md
         output-method: inject
         git-push: "true"
