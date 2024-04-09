@@ -15,4 +15,3 @@ jobs:
       with:
         working-dir: examples/
         recursive: true
-        recursive-path: modules
