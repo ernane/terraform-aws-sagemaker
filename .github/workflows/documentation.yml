@@ -10,10 +10,23 @@ jobs:
       with:
         ref: ${{ github.event.pull_request.head.ref }}
 
-    - name: Render terraform docs and push changes back to PR
+    - name: Render terraform docs and push changes back to PR modules
       uses: terraform-docs/gh-actions@main
       with:
         working-dir: .
+        recursive: true
+        recursive-path: modules/
         output-file: README.md
         output-method: inject
         git-push: "true"
+    
+    - name: Render terraform docs and push changes back to PR examples
+      uses: terraform-docs/gh-actions@main
+      with:
+        working-dir: .
+        recursive: true
+        recursive-path: examples/
+        output-file: README.md
+        output-method: inject
+        git-push: "true"
+    
